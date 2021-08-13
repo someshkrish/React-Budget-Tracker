@@ -1,6 +1,7 @@
-import Expenses from "./components/Expenses";
+import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: "e1",
@@ -22,12 +23,18 @@ function App() {
       date: new Date(2021, 5, 12)
     }
   ];
+  
+  const addNewExpenseHandler = (newExpense) => {
+    console.log(newExpense);
+  };
 
   // {} => Where simple javascript code could be evaluated in the JSX
   // title, amount, date are attributes
   // Attributes need not to be always a dynamic value we can also pass hardcoded value as props like title="React Course"
+  //onAddExpense is a custom prop which is used to pass the function to the child as a reference in order to facilitate communication FROM child TO parent, since it is passed as a reference the child is able to call that function.
   return (
     <div>
+      <NewExpense onAddExpense={addNewExpenseHandler}/>
       <Expenses items={expenses} />
     </div>
   );
